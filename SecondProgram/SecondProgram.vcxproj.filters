@@ -20,6 +20,9 @@
     <ClCompile Include="classes.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -28,5 +31,11 @@
     <ClInclude Include="classes.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Input.txt" />
   </ItemGroup>
 </Project>

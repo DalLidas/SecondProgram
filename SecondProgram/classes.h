@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include "pch.h"
 
 using namespace std;
 
@@ -19,17 +19,18 @@ public:
     book(const string& name_, const string& author_, const string& publisher_, int pages_);
 
     virtual ~book() = default;
+    
+    void SetName(const string& name_);
+    void SetAuthor(const string& author_);
+    void SetPublisher(const string& publisher_);
+    void SetPages(int pages_);
 
-    inline string SetName(const string& name_);
-    inline string SetAuthor(const string& author_);
-    inline string SetPublisher(const string& publisher_);
-    inline int SetPages(int pages_);
+    string GetName()const;
+    string GetAuthor()const;
+    string GetPublisher()const;
+    int GetPages()const;
 
-    inline string GetName()const;
-    inline string GetAuthor()const;
-    inline string GetPublisher()const;
-    inline int GetPages()const;
-    virtual inline void Show() {
+    void Show() {
         cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher << " // Pages: " << pages << endl;
     }
 
@@ -49,13 +50,13 @@ public:
    
     virtual ~techBook() = default;
 
-    inline string SetUniversity(const string& university_);
-    inline int SetType(int type_);
+    void SetUniversity(const string& university_);
+    void SetType(int type_);
 
-    inline string GetUniversity()const;
-    inline int GetType()const;
+    string GetUniversity()const;
+    int GetType()const;
 
-    virtual inline void Show() override final {
+    void Show(){
         cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher
             << " // Pages: " << pages << " // University: " << university << "// Type: " << type << endl;
     }

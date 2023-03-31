@@ -12,7 +12,7 @@ enum inputFields {
     universityField, typeField
 };
 
-template <typename type> inline bool IsInBetween(const type& num, const type& start, const type& end) {
+template <typename type> bool IsInBetween(const type& num, const type& start, const type& end) {
     return start < num && num <= end;
 }
 
@@ -34,110 +34,7 @@ template <typename type> type EnterNum() {
 int CorrectPages(const string& name, const string& author, const string& publisher);
 int CorrectTypes(const string& name, const string& author, const string& publisher);
 
-vector<book> InputFromFile() {
-    string name = "Undefined";
-    string author = "Undefined";
-    string publisher = "Undefined";
-    int pages = 0;
-    string university = "Undefined";
-    int types = 0;
-
-    string trash = " ";
-    string delimiter = " ";
-    string tmpNextBook = "#======#";
-    string tmpTechBook = "--tech--";
-
-    vector <book> b;
-
-    while (true) {
-        string filePath = " ";
-        filePath = EnterFilePath();
-        ifstream inputStream(filePath.c_str());
-        if (!inputStream.is_open()) {
-            cout << "File with this name don't exist. Try again" << endl;
-            continue;
-        }
-        else {
-            int fieldOrder = 0;
-
-            while (inputStream) {
-                switch (fieldOrder) {
-                case(nameField):
-                    inputStream >> name;
-                    break;
-                case(authorField):
-                    inputStream >> author;
-                    break;
-                case(publisherField):
-                    inputStream >> publisher;
-                    break;
-                case(pagesField):
-                    if (inputStream >> pages) {
-                        if (!IsInBetween<int>(pages, 0, maxOfPages)) {
-                            pages = CorrectPages(name, author, publisher);
-                        }
-                    }
-                    else {
-                        inputStream.clear();
-                        inputStream >> trash;
-                        pages = CorrectPages(name, author, publisher);
-                    }
-                    break;
-                }
-
-                if (fieldOrder == 3) {
-                    inputStream >> delimiter;
-                    if (delimiter == tmpNextBook) {
-                        fieldOrder = 0;
-                        book b_;
-                        b_.SetName(name);
-                        b_.SetAuthor(author);
-                        b_.SetPublisher(publisher);
-                        b_.SetPages(pages);
-
-                        b.push_back(b_);
-                    }
-                    else if (delimiter == tmpTechBook) {
-                        inputStream >> university;
-
-                        if (cin >> types) {
-                            if (!IsInBetween<int>(types, 0, maxOfTypes)) {
-                                types = CorrectPages(name, author, publisher);
-                            }
-                        }
-                        else {
-                            cin.clear();
-                            cin >> trash;
-                            types = CorrectPages(name, author, publisher);
-                        }
-
-                        techBook b_;
-                        b_.SetName(name);
-                        b_.SetAuthor(author);
-                        b_.SetPublisher(publisher);
-                        b_.SetPages(pages);
-                        b_.SetUniversity(university);
-                        b_.SetType(types);
-
-                        b.push_back(b_);
-                    }
-                    else {
-                        cout << endl << "Incorrect data from file" << endl;
-                        throw true;
-                    }
-                }
-                else {
-                    ++fieldOrder;
-                }
-            }
-
-            inputStream.close();
-            break;
-        }
-    }
-
-    return b;
-}
+void InputFromFile(vector<book*>* books);
 
 //template <typename type = book> vector<type> InputFromConsole() {
 //    string surname;
@@ -209,29 +106,29 @@ vector<book> InputFromFile() {
 //}
 
 
-template <typename type = book> void WriteOutput(const vector<type>& input) {
-    while (true) {
-        string filePath = " ";
-        filePath = EnterFilePath();
-
-        ifstream test(filePath.c_str());
-        if (test.is_open()) {
-            cout << "File already exist. You still want a write on it? (Yes \"1\" or No \"2\"): ";
-            if (EnterSettingsTwo() == 2) {
-                continue;
-            }
-        }
-
-        ofstream outputStream(filePath.c_str());
-        if (!outputStream.is_open()) {
-            cout << "File with this name don't exist. Try again" << endl;
-            continue;
-        }
-        else {
-            for (size_t i = 0; i < input.GetSize(); ++i) {
-                outputStream << input[i].Get() << endl;
-            }
-            break;
-        }
-    }
-}
+//void WriteOutput(const vector<book>& input) {
+//    while (true) {
+//        string filePath = " ";
+//        filePath = EnterFilePath();
+//
+//        ifstream test(filePath.c_str());
+//        if (test.is_open()) {
+//            cout << "File already exist. You still want a write on it? (Yes \"1\" or No \"2\"): ";
+//            if (EnterSettingsTwo() == 2) {
+//                continue;
+//            }
+//        }
+//
+//        ofstream outputStream(filePath.c_str());
+//        if (!outputStream.is_open()) {
+//            cout << "File with this name don't exist. Try again" << endl;
+//            continue;
+//        }
+//        else {
+//            for (size_t i = 0; i < input.size(); ++i) {
+//                //outputStream << input[i]. << endl;
+//            }
+//            break;
+//        }
+//    }
+//}
