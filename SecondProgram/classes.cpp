@@ -37,6 +37,14 @@ string book::GetPublisher()const {
 int book::GetPages()const {
     return pages;
 }
+string book::Get()const {
+    return name + "\n"
+        + author + "\n"
+        + publisher + "\n"
+        + to_string(pages) + "\n"
+        + "#======#\n";
+}
+
 
 ////////////////////////////////////////////////////////////////
 //                       class techBook                       //
@@ -65,4 +73,15 @@ string techBook::GetUniversity()const {
 }
 int techBook::GetType()const {
     return type;
+}
+
+string techBook::Get()const {
+    return name + "\n"
+        + author + "\n"
+        + publisher + "\n"
+        + to_string(pages) + "\n"
+        + "--tech--\n"
+        + university + "\n"
+        + to_string(type) + "\n"
+        + "#======#\n";
 }

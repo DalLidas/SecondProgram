@@ -30,6 +30,8 @@ public:
     string GetPublisher()const;
     int GetPages()const;
 
+    string Get() const;
+
     void Show() {
         cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher << " // Pages: " << pages << endl;
     }
@@ -40,7 +42,7 @@ public:
 //                       class techBook                       //
 ////////////////////////////////////////////////////////////////
 class techBook : public book {
-private:
+protected:
     string university;
     int type;  //1 - hypothesis //2 - theorem //3 - practice
 
@@ -55,6 +57,8 @@ public:
 
     string GetUniversity()const;
     int GetType()const;
+
+    string Get() const;
 
     void Show(){
         cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher
