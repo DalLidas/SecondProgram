@@ -6,10 +6,10 @@
 
 
 void DrawBorder() {
-    cout << "====================================================";
+    cout << "===================================================================================";
 }
 void DrawSubBorder() {
-    cout << "----------------------------------------------------";
+    cout << "-----------------------------------------------------------------------------------";
 }
 
 int EnterSettingsTwo() {
@@ -295,7 +295,6 @@ void InputFromConsole(vector<book*>* books) {
             books->push_back(b);
         }
     }
-    DrawBorder();
 }
 
 void WriteOutput(vector<book*>* books, bool flagIgnoreHaritage, bool flagWriteTo) {
@@ -351,4 +350,10 @@ void WriteOutput(vector<book*>* books, bool flagIgnoreHaritage, bool flagWriteTo
         }
     }
     
+}
+
+void ClearVector(vector<book*>* books) {
+    for (auto i = 0; i < books->size(); ++i) {
+        delete books->at(i);
+    }
 }

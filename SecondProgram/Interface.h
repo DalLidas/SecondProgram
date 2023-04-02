@@ -42,3 +42,5 @@ void InputFromFile(vector<book*>* books);
 void InputFromConsole(vector<book*>* books);
 
 void WriteOutput(vector<book*>* books, bool flagIgnoreHaritage, bool flagWriteTo);
+
+void ClearVector(vector<book*>* books);
