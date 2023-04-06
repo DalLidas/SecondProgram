@@ -13,23 +13,22 @@ int main() {
 	int exitSetting = 0;
 
     //flag
-    bool flagInputNewStudents = true;
+    bool flagInputNewBook = true;
 
-    cout << "3.1 Task by Mukhametov D.I. 423 group option 1" << endl << endl
-        << "Create class student included fields ( surname, first name, patronymic," << endl
-        << "date of birth, address, phone, faculty, course.Create an array of objects." << endl << endl
-        << "To realize the possibility of obtaining :" << endl
-        << "- a list of students of a given faculty," << endl
-        << "- lists of students for each faculty and course," << endl
-        << "- a list of students born after a given year." << endl << endl;
+    cout << "4.1 Task by Mukhametov D.I. 423 group option 2" << endl << endl
+        << "In the control work, the base and derived classes are set." << endl
+        << "It is necessary to develop fields and methods inherited from the base class, " << endl
+        << "as well as native components of derived classes.The base class can be abstract." << endl
+        << "Implement the ability to get a list of objects in a container" << endl << endl
+        << "To realize the base class is a book. The derived class is technical literature" << endl;
 
     while (true) {
         //containers with students
         vector <book*> books;
 
-        if (flagInputNewStudents) {
+        if (flagInputNewBook) {
             //input
-            cout << "How do you want to input information about student (File \"1\" or Console \"2\"): ";
+            cout << "How do you want to input books (File \"1\" or Console \"2\"): ";
             inputSetting = EnterSettingsTwo();
 
             switch (inputSetting) {
@@ -85,8 +84,8 @@ int main() {
 
         //ending
         switch (exitSetting) {
-        case(oldBooks): flagInputNewStudents = false; break;                     //use old students on next cycle
-        case(newBooks): flagInputNewStudents = true; ClearVector(&books); break; //enter new students on next cycle
+        case(oldBooks): flagInputNewBook = false; break;                     //use old students on next cycle
+        case(newBooks): flagInputNewBook = true; ClearVector(&books); break; //enter new students on next cycle
         case(closeProgram): ClearVector(&books); return 0;                                            //closeProgram
         default: cout << "Unexpected behavior" << endl; continue;
         }
