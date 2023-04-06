@@ -15,13 +15,12 @@ int main() {
     //flag
     bool flagInputNewStudents = true;
 
-    cout << "3.1 Task by Mukhametov D.I. 423 group option 1" << endl << endl
-        << "Create class student included fields ( surname, first name, patronymic," << endl
-        << "date of birth, address, phone, faculty, course.Create an array of objects." << endl << endl
-        << "To realize the possibility of obtaining :" << endl
-        << "- a list of students of a given faculty," << endl
-        << "- lists of students for each faculty and course," << endl
-        << "- a list of students born after a given year." << endl << endl;
+    cout << "4.1 Task by Mukhametov D.I. 423 group option 2" << endl << endl
+        << "In the control work, the base and derived classes are set." << endl
+        << "It is necessary to develop fields and methods inherited from the base class, " << endl
+        << "as well as native components of derived classes.The base class can be abstract." << endl
+        << "Implement the ability to get a list of objects in a container" << endl << endl
+        << "To realize the base class is a book. The derived class is technical literature" << endl;
 
     while (true) {
         //containers with students
