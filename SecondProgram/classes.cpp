@@ -85,3 +85,9 @@ string techBook::Get()const {
         + to_string(type) + "\n"
         + "#======#\n";
 }
+
+
+void techBook::Show(){
+    cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher
+        << " // Pages: " << pages << " // University: " << university << "// Type: " << type << endl;
+}

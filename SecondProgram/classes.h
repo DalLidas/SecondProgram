@@ -60,8 +60,5 @@ public:
 
     string Get() const;
 
-    void Show(){
-        cout << "Book: " << name << " // Author: " << author << " // Publisher: " << publisher
-            << " // Pages: " << pages << " // University: " << university << "// Type: " << type << endl;
-    }
+    void Show();
 };

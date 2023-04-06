@@ -15,7 +15,7 @@ int main() {
     //flag
     bool flagInputNewBook = true;
 
-    cout << "4.1 Task by Mukhametov D.I. 423 group option 2" << endl << endl
+    cout << "2 Task by Mukhametov D.I. 423 group option 2" << endl << endl
         << "In the control work, the base and derived classes are set." << endl
         << "It is necessary to develop fields and methods inherited from the base class, " << endl
         << "as well as native components of derived classes.The base class can be abstract." << endl
