@@ -266,13 +266,13 @@ void InputFromConsole(vector<book*>* books) {
             cout << "Type: ";
             if (cin >> types) {
                 if (!IsInBetween<int>(types, 0, maxOfTypes)) {
-                    types = CorrectPages(name, author, publisher);
+                    types = CorrectTypes(name, author, publisher);
                 }
             }
             else {
                 cin.clear();
                 cin >> trash;
-                types = CorrectPages(name, author, publisher);
+                types = CorrectTypes(name, author, publisher);
             }
 
             techBook* b = new techBook;

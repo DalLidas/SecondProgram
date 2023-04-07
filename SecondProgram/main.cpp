@@ -15,6 +15,9 @@ int main() {
     //flag
     bool flagInputNewBook = true;
 
+    //containers with students
+    vector <book*> books;
+
     cout << "2 Task by Mukhametov D.I. 423 group option 2" << endl << endl
         << "In the control work, the base and derived classes are set." << endl
         << "It is necessary to develop fields and methods inherited from the base class, " << endl
@@ -23,9 +26,6 @@ int main() {
         << "To realize the base class is a book. The derived class is technical literature" << endl;
 
     while (true) {
-        //containers with students
-        vector <book*> books;
-
         if (flagInputNewBook) {
             //input
             cout << "How do you want to input books (File \"1\" or Console \"2\"): ";
