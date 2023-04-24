@@ -1,4 +1,5 @@
 #include "Interface.h"
+#include "Test.h"
 
 enum inputSettings { inputFromFile = 1, inputFromConsole = 2 };
 enum writeMenuSettings { wrirteAndIgnore = 1, writeDontIgnore = 2, dontWrite = 3 };
@@ -14,11 +15,23 @@ int main() {
 
     //flag
     bool flagInputNewBook = true;
+    bool flagErrorExist = true;
 
     //containers with students
     vector <book*> books;
 
-    cout << "2 Task by Mukhametov D.I. 423 group option 2" << endl << endl
+    flagErrorExist = ErrorHandler();
+    if (flagErrorExist) {
+        cout << " Do you still want are run the program? (Yes \"1\" or No \"2\")";
+        if (EnterSettingsTwo() == 2) return 0;
+    }
+    else {
+        DrawBorder();
+        cout << endl << "Program passed all test. All sorting function work correct" << endl;
+        DrawBorder();
+    }
+
+    cout << endl << "2 Task by Mukhametov D.I. 423 group option 2" << endl << endl
         << "In the control work, the base and derived classes are set." << endl
         << "It is necessary to develop fields and methods inherited from the base class, " << endl
         << "as well as native components of derived classes.The base class can be abstract." << endl

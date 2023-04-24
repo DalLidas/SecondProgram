@@ -23,6 +23,9 @@
     <ClCompile Include="Interface.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -32,6 +35,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Interface.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

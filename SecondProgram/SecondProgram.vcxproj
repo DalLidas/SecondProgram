@@ -134,9 +134,11 @@
     <ClCompile Include="classes.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="classes.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

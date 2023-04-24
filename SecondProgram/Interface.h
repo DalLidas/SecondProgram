@@ -38,6 +38,7 @@ int CorrectPages(const string& name, const string& author, const string& publish
 int CorrectTypes(const string& name, const string& author, const string& publisher);
 
 void InputFromFile(vector<book*>* books);
+void InputFromFileInner(vector<book*>* books, istream& inputStream);
 
 void InputFromConsole(vector<book*>* books);
 

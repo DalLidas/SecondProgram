@@ -102,6 +102,33 @@ int CorrectTypes(const string& name, const string& author, const string& publish
 }
 
 void InputFromFile(vector<book*>* books) {
+    while (true) {
+        string filePath = " ";
+        filePath = EnterFilePath();
+        ifstream inputStream(filePath.c_str());
+        if (!inputStream.is_open()) {
+            cout << "File with this name don't exist. Try again" << endl;
+            continue;
+        }
+        else {
+            try {
+                InputFromFileInner(books, inputStream);
+            }
+            catch (bool& error) {
+                if (error) {
+                    cout << endl << "Corrupted data from file. Maybe incorrect delimiter" << endl;
+                    inputStream.close();
+                    continue;
+                }
+            }
+
+            inputStream.close();
+            break;
+        }
+    }
+}
+
+void InputFromFileInner(vector<book*>* books, istream& inputStream){
     string name = "Undefined";
     string author = "Undefined";
     string publisher = "Undefined";
@@ -114,94 +141,80 @@ void InputFromFile(vector<book*>* books) {
     string tmpNextBook = "#======#";
     string tmpTechBook = "--tech--";
 
-    while (true) {
-        string filePath = " ";
-        filePath = EnterFilePath();
-        ifstream inputStream(filePath.c_str());
-        if (!inputStream.is_open()) {
-            cout << "File with this name don't exist. Try again" << endl;
-            continue;
-        }
-        else {
-            int fieldOrder = 0;
+    int fieldOrder = 0;
 
-            while (inputStream) {
-                switch (fieldOrder) {
-                case(nameField):
-                    inputStream >> name;
-                    break;
-                case(authorField):
-                    inputStream >> author;
-                    break;
-                case(publisherField):
-                    inputStream >> publisher;
-                    break;
-                case(pagesField):
-                    if (inputStream >> pages) {
-                        if (!IsInBetween<int>(pages, 0, maxOfPages)) {
-                            pages = CorrectPages(name, author, publisher);
-                        }
-                    }
-                    else {
-                        inputStream.clear();
-                        inputStream >> trash;
-                        pages = CorrectPages(name, author, publisher);
-                    }
-                    break;
+    while (!inputStream.eof()) {
+        switch (fieldOrder) {
+        case(nameField):
+            inputStream >> name;
+            break;
+        case(authorField):
+            inputStream >> author;
+            break;
+        case(publisherField):
+            inputStream >> publisher;
+            break;
+        case(pagesField):
+            if (inputStream >> pages) {
+                if (!IsInBetween<int>(pages, 0, maxOfPages)) {
+                    pages = CorrectPages(name, author, publisher);
                 }
+            }
+            else {
+                inputStream.clear();
+                inputStream >> trash;
+                pages = CorrectPages(name, author, publisher);
+            }
+            break;
+        }
 
-                if (fieldOrder == 3) {
-                    inputStream >> delimiter;
-                    if (delimiter == tmpNextBook) {
-                        fieldOrder = 0;
-                        book* b = new book;
-                        b->SetName(name);
-                        b->SetAuthor(author);
-                        b->SetPublisher(publisher);
-                        b->SetPages(pages);
+        if (fieldOrder == 3) {
+            inputStream >> delimiter;
+            if (delimiter == tmpNextBook) {
+                fieldOrder = 0;
+                book* b = new book;
+                b->SetName(name);
+                b->SetAuthor(author);
+                b->SetPublisher(publisher);
+                b->SetPages(pages);
 
-                        books->push_back(b);
-                    }
-                    else if (delimiter == tmpTechBook) {
-                        inputStream >> university;
+                books->push_back(b);
+            }
+            else if (delimiter == tmpTechBook) {
+                inputStream >> university;
 
-                        if (inputStream >> types) {
-                            if (!IsInBetween<int>(types, 0, maxOfTypes)) {
-                                types = CorrectTypes(name, author, publisher);
-                            }
-                        }
-                        else {
-                            inputStream.clear();
-                            inputStream >> trash;
-                            types = CorrectTypes(name, author, publisher);
-                        }
-
-                        inputStream >> delimiter;
-                        if (delimiter == tmpNextBook){
-                            fieldOrder = 0;
-                            techBook* b = new techBook;
-                            b->SetName(name);
-                            b->SetAuthor(author);
-                            b->SetPublisher(publisher);
-                            b->SetPages(pages);
-                            b->SetUniversity(university);
-                            b->SetType(types);
-
-                            books->push_back(b);
-                        }
-                       
-                    }
-                    else {
-                        cout << endl << "Corrupted data from file. Maybe incorrect delimiter" << endl;
+                if (inputStream >> types) {
+                    if (!IsInBetween<int>(types, 0, maxOfTypes)) {
+                        types = CorrectTypes(name, author, publisher);
                     }
                 }
                 else {
-                    ++fieldOrder;
+                    inputStream.clear();
+                    inputStream >> trash;
+                    types = CorrectTypes(name, author, publisher);
                 }
-            }
 
-            inputStream.close();
-            break;
+                inputStream >> delimiter;
+                if (delimiter == tmpNextBook) {
+                    fieldOrder = 0;
+                    techBook* b = new techBook;
+                    b->SetName(name);
+                    b->SetAuthor(author);
+                    b->SetPublisher(publisher);
+                    b->SetPages(pages);
+                    b->SetUniversity(university);
+                    b->SetType(types);
+
+                    books->push_back(b);
+                }
+
+            }
+            else {
+                throw true;
+            }
+        }
+        else {
+            ++fieldOrder;
         }
     }
 }
